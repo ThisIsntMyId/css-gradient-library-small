@@ -1,0 +1,218 @@
+$colors: ("white" : #FFFFFF,
+         "silver": #C0C0C0,
+         "gray": #808080,
+         "black": #000000,
+         "red": #FF0000,
+         "maroon": #800000,
+         "yellow": #FFFF00,
+         "olive": #808000,
+         "lime": #00FF00,
+         "green": #008000,
+         "aqua": #00FFFF,
+         "teal": #008080,
+         "blue": #0000FF,
+         "navy": #000080,
+         "fuchsia": #FF00FF,
+         "purple": #800080);
+
+//default: bottom
+$directions: ("verticle": to bottom,
+              "horizontal": to right,
+              "diagonal": to top left,
+              "opposite-diagonal": to top right);
+
+$opacities: ("very-less": 0.3,
+             "less": 0.7,
+             "full": 1);
+
+@each $cn, $cv in $colors {
+    .#{$cn}{
+        background: #{$cv};
+    }
+}
+
+@each $dir_name, $dir_val in $directions{
+    @if $dir_name == "verticle"{
+        @each $cn1, $cv1 in $colors {
+            @each $cn2, $cv2 in $colors{
+                @if $cn1 != $cn2{
+                    .#{$cn1}-#{$cn2}{
+                        background: linear-gradient(#{$cv1}, #{$cv2});
+                    }
+                }
+            }
+        }
+        
+        @each $cn1, $cv1 in $colors {
+            @each $cn2, $cv2 in $colors{
+                @if $cn1 != $cn2{
+                    @each $opn1, $opv1 in $opacities{
+                        @each $opn2, $opv2 in $opacities{
+                            @if $opn1 != $opn2{
+                                @if $opn1 == "full"{
+                                    .#{$cn1}-#{$opn2}-#{$cn2}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient($t1 , $t2);
+                                    }
+                                } @else if $opn2 == "full"{
+                                    .#{$opn1}-#{$cn1}-#{$cn2}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient($t1 , $t2);
+                                    }
+                                } @else {
+                                    .#{$opn1}-#{$cn1}-#{$opn2}-#{$cn2}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient($t1 , $t2);
+                                    }
+                                }
+                            } @else if ($opn1 == $opn2) and ($opn1 != "full"){
+                                .#{$opn1}-#{$cn1}-#{$opn2}-#{$cn2}{
+                                    $t1: $cv1;
+                                    $t1: change-color($t1, $alpha: $opv1);
+                                    $t2: $cv2;
+                                    $t2: change-color($t2, $alpha: $opv2);
+                                    background: linear-gradient($t1 , $t2);
+                                }
+                            }
+                        }
+                    }
+                } @else {
+                    @each $opn1, $opv1 in $opacities{
+                        @each $opn2, $opv2 in $opacities{
+                            @if $opn1 != $opn2{
+                                @if $opn1 == "full"{
+                                    .#{$cn1}-#{$opn2}-#{$cn2}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient($t1 , $t2);
+                                    }
+                                } @else if $opn2 == "full"{
+                                    .#{$opn1}-#{$cn1}-#{$cn2}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient($t1 , $t2);
+                                    }
+                                } @else {
+                                    .#{$opn1}-#{$cn1}-#{$opn2}-#{$cn2}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient($t1 , $t2);
+                                    }
+                                }
+                            } @else if ($opn1 == $opn2) and ($opn1 != "full"){
+                                .#{$opn1}-#{$cn1}{
+                                    $t1: $cv1;
+                                    $t1: change-color($t1, $alpha: $opv1);
+                                    background: $t1;
+                                }
+                            }
+                        }
+                    }                        
+                }
+            }
+        }
+    } @else {
+        @each $cn1, $cv1 in $colors {
+            @each $cn2, $cv2 in $colors{
+                @if $cn1 != $cn2{
+                    .#{$cn1}-#{$cn2}-#{$dir_name}{
+                        background: linear-gradient(#{$dir_val}, #{$cv1}, #{$cv2});
+                    }
+                }
+            }
+        }
+        
+        @each $cn1, $cv1 in $colors {
+            @each $cn2, $cv2 in $colors{
+                @if $cn1 != $cn2{
+                    @each $opn1, $opv1 in $opacities{
+                        @each $opn2, $opv2 in $opacities{
+                            @if $opn1 != $opn2{
+                                @if $opn1 == "full"{
+                                    .#{$cn1}-#{$opn2}-#{$cn2}-#{$dir_name}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient(#{$dir_val}, $t1 , $t2);
+                                    }
+                                } @else if $opn2 == "full"{
+                                    .#{$opn1}-#{$cn1}-#{$cn2}-#{$dir_name}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient(#{$dir_val}, $t1 , $t2);
+                                    }
+                                } @else {
+                                    .#{$opn1}-#{$cn1}-#{$opn2}-#{$cn2}-#{$dir_name}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient(#{$dir_val}, $t1 , $t2);
+                                    }
+                                }
+                            } @else if ($opn1 == $opn2) and ($opn1 != "full"){
+                                .#{$opn1}-#{$cn1}-#{$opn2}-#{$cn2}-#{$dir_name}{
+                                    $t1: $cv1;
+                                    $t1: change-color($t1, $alpha: $opv1);
+                                    $t2: $cv2;
+                                    $t2: change-color($t2, $alpha: $opv2);
+                                    background: linear-gradient(#{$dir_val}, $t1 , $t2);
+                                }
+                            }
+                        }
+                    }
+                } @else {
+                    @each $opn1, $opv1 in $opacities{
+                        @each $opn2, $opv2 in $opacities{
+                            @if $opn1 != $opn2{
+                                @if $opn1 == "full"{
+                                    .#{$cn1}-#{$opn2}-#{$cn2}-#{$dir_name}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient(#{$dir_val}, $t1 , $t2);
+                                    }
+                                } @else if $opn2 == "full"{
+                                    .#{$opn1}-#{$cn1}-#{$cn2}-#{$dir_name}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient(#{$dir_val}, $t1 , $t2);
+                                    }
+                                } @else {
+                                    .#{$opn1}-#{$cn1}-#{$opn2}-#{$cn2}-#{$dir_name}{
+                                        $t1: $cv1;
+                                        $t1: change-color($t1, $alpha: $opv1);
+                                        $t2: $cv2;
+                                        $t2: change-color($t2, $alpha: $opv2);
+                                        background: linear-gradient(#{$dir_val}, $t1 , $t2);
+                                    }
+                                }
+                            }
+                        }
+                    }                        
+                }
+            }
+        }
+    }
+}
