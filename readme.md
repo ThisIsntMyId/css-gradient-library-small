@@ -10,10 +10,10 @@ Directions: verticle(default), horizontal, diagonal, opposite-diagonal
 Start with **transparency shade** then **color name** then next **transparency shade** of other color then other **color name** the **direction** as a class name for div  
 eg: less-red-very-less-purple-horizontal  
 eg: very-less-red-less-purple-diagonal  
-eg: blue-very-yellow-diagonal *Note: if u want to use full shade then no need to mention full before color name. It is by default*  
-eg: blue-yellow *Note: if u want to use verticle direction then no need to mention verticle after color name. It is by default*  
-eg: blue *Note: you can use just the color name to get that color as background*  
-eg: very-less-blue *Note: this also works with shades*  
+eg: blue-very-yellow-diagonal **Note**: if u want to use full shade then no need to mention full before color name. It is by default  
+eg: blue-yellow **Note**: if u want to use verticle direction then no need to mention verticle after color name. It is by default  
+eg: blue **Note**: you can use just the color name to get that color as background  
+eg: very-less-blue **Note**: this also works with shades  
  
 **You can swap color to get desired effect**  
 eg: red-aqua  
